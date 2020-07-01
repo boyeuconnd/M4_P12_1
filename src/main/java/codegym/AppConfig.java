@@ -1,6 +1,8 @@
 package codegym;
 
 
+import codegym.service.PhoneService;
+import codegym.service.impl.PhoneServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.InitializingBean;
@@ -124,8 +126,8 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         return messageSource;
     }
 
-//    @Bean
-//    public SmartphoneService smartphoneService(){
-//        return new SmartphoneServiceImpl();
-//    }
+    @Bean
+    public PhoneService PhoneService(){
+        return new PhoneServiceImpl();
+    }
 }
