@@ -48,4 +48,19 @@ public class PhoneController {
     public Phone deletePhone(@PathVariable Long id){
         return phoneService.remove(id);
     }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView editSmartphonePage(@PathVariable Long id) {
+        ModelAndView mav = new ModelAndView("phones/edit-phone");
+        Phone phone = phoneService.findById(id);
+        mav.addObject("sPhone", phone);
+        return mav;
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Phone editPhone(@PathVariable Long id, @RequestBody Phone phone) {
+        phone.setId(id);
+        return phoneService.save(phone);
+    }
 }
